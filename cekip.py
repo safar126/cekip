@@ -1,0 +1,45 @@
+import requests as r
+import re,os
+hed = {
+"user-agent":"Mozilla/5.0 (Linux; Android 6.0.1; CPH1701) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36"
+}
+os.system('clear')
+print("Code : Safar\nTeam : XiuzCode\nTool : Cek Ip\nNB : Hanya Sebuah Print\n#Regex Murahan")
+cok = input("kuki : ")
+b = r.get("https://ipsaya.com/",cookies={"cookie":cok},headers=hed).text
+#ss = open("tes.php","w").write(b)
+s = re.compile("(IP address anda :(.*))  (\d+.\d+.\d+.\d+)")
+d = s.search(b)
+print("IP address anda :",d.group(3))
+u = re.compile(r"(Browser yang digunakan :</b><br>) (.*)")
+c = u.search(b)
+print("Browser yang digunakan :",c.group(2))
+u = re.compile(r"(Jenis Koneksi :</b><br>)(\w+ \w+)")
+c = u.search(b)
+print("Jenis Koneksi :",c.group(2))
+
+u = re.compile(r"(Nama Organisasi :</b><br>)(\w+)")
+c = u.search(b)
+print("Nama Organisasi :",c.group(2))
+u = re.compile(r"(ISP :</b><br>)(\w+)")
+c = u.search(b)
+print("ISP :",c.group(2))
+u = re.compile(r"(ISP AS Number :</b><br>)(\w+ \w+. \w+ \w+)")
+c = u.search(b)
+print("ISP AS Number :",c.group(2))
+u = re.compile(r"(Kota :</b><br>)(\w+)")
+c = u.search(b)
+print("Kota :",c.group(2))
+u = re.compile(r"(\w+)(<br><b>Kode Negara)")
+c = u.search(b)
+print("Negara :",c.group(1))
+u = re.compile(r"(Kode Negara :</b><br>)(\w+)")
+c = u.search(b)
+print("Kode Negara :",c.group(2))
+u = re.compile(r"(Devices yang anda gunakan :</b><br>)(\w+ \w+ \w+ \w+, \w+ \w+ \w+)")
+c = u.search(b)
+print("Devices yang anda gunakan :",c.group(2))
+u = re.compile(r"(OS yang anda gunakan :</b><br>)(\w+ \w+ \d+ \((\w+)\))")
+c = u.search(b)
+print("OS yang anda gunakan :",c.group(2))
+
